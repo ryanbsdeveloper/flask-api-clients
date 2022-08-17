@@ -1,21 +1,23 @@
 from models import db
 
 
-class Cat(db.Model):
-    __tablename__ = "cats"
+class AuthModel(db.Model):
+    __tablename__ = "authorization"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(30), nullable=False)
+    username = db.Column(db.String(100))
+    password = db.Column(db.String(100))
 
     def as_dict(self):
         return dict(
             id=self.id,
-            name=self.name
+            username=self.username,
+            password=self.password,
         )
 
     @classmethod
-    def find_by_id(cls, id):
-        return cls.query.filter_by(id=id).first()
+    def find_by_username(cls, username):
+        return cls.query.filter_by(username=username).first()
 
     @classmethod
     def get_all(cls):

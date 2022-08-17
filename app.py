@@ -26,7 +26,8 @@ def create_app():
     #     )
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
-    app.secret_key = os.getenv('SECRET')
+    app.config['JWT_SECRET_KEY'] = 'HS256'
+    app.secret_key = os.getenv('SECRET_KEY')
     db.init_app(app)
     api.init_app(app)
     JWTManager(app)
