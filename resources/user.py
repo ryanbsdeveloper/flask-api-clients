@@ -61,7 +61,6 @@ class User(Resource):
 
 token_schema = user_ns.model('Token', dict(
     access_token=fields.String(description="Access token for protected endpoints"),
-    refresh_token=fields.String(description="Refresh access token")
 ))
 
 
