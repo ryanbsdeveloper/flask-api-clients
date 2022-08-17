@@ -6,7 +6,7 @@ from werkzeug.security import safe_str_cmp
 from models.auth import AuthModel
 
 
-auth_ns = Namespace('auth', 'Create authorization JWT')
+auth_ns = Namespace('auth', description='Create authorization JWT', ordered=True)
 
 auth_schema = auth_ns.model('Create Auth', dict(
     username=fields.String(required=True, description='username'),
@@ -23,6 +23,7 @@ class AuthRegister(Resource):
     @auth_ns.expect(auth_schema)
     @auth_ns.response(201, description='Createad token JWT', model=auth_schema)
     def post(self):
+        """Register your login user"""
         username = auth_ns.payload.get('username')
         password = auth_ns.payload.get('password')
 
@@ -45,6 +46,8 @@ class AuthDelete(Resource):
     @auth_ns.expect(auth_schema)
     @auth_ns.response(201, description='Createad token JWT', model=auth_schema)
     def delete(self):
+        """Delete your login user."""
+
         username = auth_ns.payload.get('username')
         password = auth_ns.payload.get('password')
 
@@ -64,6 +67,8 @@ class AuthLogin(Resource):
     @auth_ns.expect(auth_schema)
     @auth_ns.response(201, description='Createad token JWT', model=auth_token)
     def post(self):
+        """Log in with your user and get access to the token."""
+
         user = AuthModel.find_by_username(auth_ns.payload.get('username'))
         if not user:
             auth_ns.abort(404)

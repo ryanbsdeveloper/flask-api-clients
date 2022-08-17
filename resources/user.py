@@ -7,7 +7,7 @@ from flask_restx import Resource, Namespace, fields
 from models.user import UserModel
 
 
-user_ns = Namespace("clients", description="Customer management")
+user_ns = Namespace("clients", description="Customer management", ordered=True)
 
 user_schema = user_ns.model("User", dict(
     id=fields.Integer(readonly=True, description="User unique id."),
@@ -18,16 +18,16 @@ user_schema = user_ns.model("User", dict(
 
 @user_ns.route("/")
 class Users(Resource):
-    @jwt_required
     @user_ns.doc(shortcut="Listar clientes")
     @user_ns.marshal_list_with(user_schema, skip_none=True)
+    @jwt_required
     def get(self):
         return [user.as_dict() for user in UserModel.get_all()]
 
-    @jwt_required
     @user_ns.doc("create_user")
     @user_ns.expect(user_schema)
     @user_ns.marshal_with(user_schema, skip_none=True)
+    @jwt_required
     def post(self):
         user = UserModel(
             username=user_ns.payload.get('username'),
@@ -40,9 +40,9 @@ class Users(Resource):
 @user_ns.route("/<int:id>")
 @user_ns.response(404, 'User not found.')
 class User(Resource):
-    @jwt_required
     @user_ns.doc("get_user")
     @user_ns.marshal_with(user_schema, skip_none=True)
+    @jwt_required
     def get(self, id):
         user = UserModel.find_by_id(id)
         if not user:
@@ -58,15 +58,12 @@ class User(Resource):
             user.delete()
         return '', 204
 
-
 token_schema = user_ns.model('Token', dict(
     access_token=fields.String(description="Access token for protected endpoints"),
 ))
 
-
 @user_ns.route("/login")
 class Login(Resource):
-
     @user_ns.doc("post_user_login")
     @user_ns.expect(user_schema)
     @user_ns.response(404, "User not found.")
