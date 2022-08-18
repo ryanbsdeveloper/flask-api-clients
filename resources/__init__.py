@@ -1,7 +1,7 @@
 from flask_restx import Api
 
 from .auth import auth_ns
-from .user import user_ns
+from .clients import client_ns
 
 authorizations = {
     "Bearer":
@@ -16,8 +16,7 @@ api = Api(
     title="Client API",
     version="0.0.1",
     description="API for manangent client",
-    security={'JWT': ['readonly']},
     authorizations=authorizations
 )
 api.add_namespace(auth_ns, '/auth')
-api.add_namespace(user_ns)
+api.add_namespace(client_ns)

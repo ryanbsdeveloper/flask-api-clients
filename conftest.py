@@ -1,4 +1,5 @@
 import pytest
+from models.auth import AuthModel
 from app import create_app
 
 
@@ -11,6 +12,9 @@ def client():
     with app.test_client() as client:
         yield client
 
+@pytest.fixture
+def db():
+    return AuthModel()
 
 @pytest.fixture
 def user_data():
