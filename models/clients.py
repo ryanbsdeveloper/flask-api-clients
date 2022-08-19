@@ -1,4 +1,4 @@
-from db import db
+from .db import db
 
 
 class ClientModel(db.Model):
