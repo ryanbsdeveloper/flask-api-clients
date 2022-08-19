@@ -5,20 +5,20 @@ from flask_restx import Namespace, fields
 client_ns = Namespace(
     "Clientes", description="Gerenciamento dos clientes", ordered=True, path='/')
 
-user_schema = client_ns.model("Clients", dict(
-    name=fields.String(required=True, description="Client name."),
-    email=fields.String(required=True, description="Email of client."),
-    password=fields.String(required=True, description="Password of client."),
-    phone=fields.String(required=False, description=" Number phone of client.")
+user_schema = client_ns.model("Clientes", dict(
+    name=fields.String(required=True, description="Nome do cliente"),
+    email=fields.String(required=True, description="Email do cliente"),
+    password=fields.String(required=True, description="Senha do cliente"),
+    phone=fields.String(required=False, description="Número do telefone do cliente")
 ))
 
 # resources/auth.py
 auth_ns = Namespace(
     'JWT', description='Criar autenticação JWT', ordered=True, path='/auth')
 
-auth_schema = auth_ns.model('Create Auth', dict(
-    username=fields.String(required=True, description='username'),
-    password=fields.String(required=True, description='password')
+auth_schema = auth_ns.model('Criar autenticação', dict(
+    username=fields.String(required=True, description='Nome de usuário'),
+    password=fields.String(required=True, description='Senha')
 ))
 
 token_schema = auth_ns.model('Token', dict(

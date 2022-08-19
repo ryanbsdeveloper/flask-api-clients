@@ -1,10 +1,8 @@
-from email import message
-from flask.json import jsonify
-from flask import Response
+from flask import Response, json
 from flask_restx import Resource, Namespace, fields
 from flask_jwt_extended import (
     create_refresh_token,
-    create_access_token, 
+    create_access_token,
     jwt_required)
 from werkzeug.security import safe_str_cmp
 from models.auth import AuthModel
@@ -22,16 +20,33 @@ class AuthRegister(Resource):
         password = auth_ns.payload.get('password')
 
         if not username or not password:
-            return Response(response="Campos incorretos", status=400)
+            return Response(
+                response=json.dumps({
+                    "message": "Campos incorretos."
+                }),
+                status=400,
+                mimetype='application/json'
+            )
 
         user = AuthModel.find_by_username(auth_ns.payload.get('username'))
         if user:
-            return Response(response="Usuário já registrado com este nome. ", status=400)
+            return Response(
+                response=json.dumps({
+                    "message": "Usuário já registrado com este nome."
+                }),
+                status=400,
+                mimetype='application/json'
+            )
 
         auth = AuthModel(username=username, password=password)
         auth.save()
-        return jsonify(
-            access_token=create_access_token(username),
+
+        return Response(
+            response=json.dumps({
+                "acces_token": create_access_token(username)
+            }),
+            status=200,
+            mimetype='application/json'
         )
 
 
@@ -48,17 +63,42 @@ class AuthDelete(Resource):
         password = auth_ns.payload.get('password')
 
         if not username or not password:
-            return Response("Campos incorretos")
+            return Response(
+                response=json.dumps({
+                    "message": "Campos incorretos."
+                }),
+                status=404,
+                mimetype='application/json'
+            )
 
         user = AuthModel.find_by_username(username)
         if not user:
-            return Response('Usuário não registrado', 400)
+            return Response(
+                response=json.dumps({
+                    "message": "Usuário não registrado."
+                }),
+                status=400,
+                mimetype='application/json'
+            )
 
         if safe_str_cmp(user.password, password):
             user.delete()
-            return Response('Deletado', 200)
+            return Response(
+                response=json.dumps({
+                    "message": " Cliente deletado."
+                }),
+                status=400,
+                mimetype='application/json'
+            )
+
         else:
-            return Response('Senha incorreta', 401)
+            return Response(
+                response=json.dumps({
+                    "message": "Senha incorreta."
+                }),
+                status=401,
+                mimetype='application/json'
+            )
 
 
 @auth_ns.route("/user/login")
@@ -70,14 +110,30 @@ class AuthLogin(Resource):
         """Logue com seu usuario de login e tenha o acesso ao token."""
 
         user = AuthModel.find_by_username(auth_ns.payload.get('username'))
+
         if not user:
-            return Response('Usuário de autenticação não registrado.', 404)
+            return Response(
+                response=json.dumps({
+                    "message": "Usuário de autenticação não registrado."
+                }),
+                status=404,
+                mimetype='application/json'
+            )
 
         if safe_str_cmp(user.password, auth_ns.payload.get('password')):
             create_refresh_token(user.username)
-            return dict(
-                access_token=create_access_token(user.username)
+            return Response(
+                response=json.dumps({
+                    "access_token": create_access_token(user.username)
+                }),
+                status=200,
+                mimetype='application/json'
             )
         else:
-            return Response('Senha incorreta.', 403)
-            
+            return Response(
+                response=json.dumps({
+                    "message": "Senha incorreta."
+                }),
+                status=403,
+                mimetype='application/json'
+            ) 

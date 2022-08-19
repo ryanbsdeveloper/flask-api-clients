@@ -13,10 +13,14 @@ authorizations = {
 }
 
 api = Api(
-    title="API de gerenciamento de clientes. ",
-    version="0.0.1",
+    title="API de gerenciamento de clientes.",
+    version="0.1.0",
     description="API para gerenciar dados de clientes para sua aplicação.",
-    authorizations=authorizations
+    authorizations=authorizations,
+    contact_url="http://portryan-env-1.eba-r3mjces3.us-east-1.elasticbeanstalk.com/",
+    contact_email="ryanbsdeveloper@gmail.com",
+    contact='Desenvolvedor',
+
 )
 api.add_namespace(auth_ns, '/auth')
 api.add_namespace(client_ns)

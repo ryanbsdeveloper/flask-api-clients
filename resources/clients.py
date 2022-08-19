@@ -1,4 +1,4 @@
-from flask import Response
+from flask import Response, json
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_restx import Resource
@@ -6,9 +6,10 @@ from flask_restx import Resource
 from models.clients import ClientModel
 from schemas.schemas import client_ns, user_schema
 
+
 @client_ns.route("/clients")
 class Users(Resource):
-    @client_ns.doc("Listar clientes", security="Bearer")
+    @client_ns.doc("Listar todos clientes", security="Bearer")
     @client_ns.response(code=200, description='', model=user_schema)
     @jwt_required
     def get(self):
@@ -16,6 +17,7 @@ class Users(Resource):
 
         identity_jwt = get_jwt_identity()
         return dict(clients=[user.as_dict() for user in ClientModel.get_all_jwt_identity(identity_jwt)])
+
 
 @client_ns.route("/client")
 class Users(Resource):
@@ -32,22 +34,52 @@ class Users(Resource):
         email = client_ns.payload.get('email')
         password = client_ns.payload.get('password')
         phone = client_ns.payload.get('phone')
-        
+
         check_client = ClientModel.find_by_email(email, identity_jwt)
         if check_client:
-            return Response('Email já em uso por outro cliente.', 400)
+            return Response(
+                response=json.dumps({
+                    "message": "Email já em uso por outro cliente."
+                }),
+                status=400,
+                mimetype='application/json'
+            )
 
         if not name or not email or not password:
-            return Response('Campos incorretos', 400)
+            return Response(
+                response=json.dumps({
+                    "message": "Campos incorretos."
+                }),
+                status=400,
+                mimetype='application/json'
+            )
 
         # Check fields
         if len(name) < 3:
-            return Response('Nome ínvalido.', 400)
+            return Response(
+                response=json.dumps({
+                    "message": "Nome ínvalido."
+                }),
+                status=400,
+                mimetype='application/json'
+            )
         if "@" not in email or len(email) < 3:
-            return Response('Email ínvalido', 400)
+            return Response(
+                response=json.dumps({
+                    "message": "Email ínvalido."
+                }),
+                status=400,
+                mimetype='application/json'
+            )
         if len(password) < 3:
-            return Response('Senha ínvalida.', 400)
-        
+            return Response(
+                response=json.dumps({
+                    "message": "Senha ínvalida."
+                }),
+                status=400,
+                mimetype='application/json'
+            )
+
         client = ClientModel(
             jwt_identity=identity_jwt,
             name=client_ns.payload.get('name'),
@@ -59,22 +91,28 @@ class Users(Resource):
         client.save()
         return client.as_dict(), 201
 
-    
+
 @client_ns.route("/client/<string:email>")
 @client_ns.response(404, 'Cliente não encontrado.')
 class User(Resource):
     @client_ns.doc("Pegar cliente", security="Bearer")
-    @client_ns.marshal_with(user_schema, skip_none=True)
+    @client_ns.response(code=201, model=user_schema, description='')
     @jwt_required
     def get(self, email):
         """Possibilita pegar dados de um cliente."""
-        
+
         identity_jwt = get_jwt_identity()
 
         client = ClientModel.find_by_email(email, identity_jwt)
         if not client:
-            return Response('Cliente não encontrado.', 404)
-            
+            return Response(
+                response=json.dumps({
+                    "message": "Cliente não encontrado."
+                }),
+                status=404,
+                mimetype='application/json'
+            )
+
         return client.as_dict()
 
     @client_ns.doc("Deletar cliente", security="Bearer")
@@ -87,10 +125,22 @@ class User(Resource):
 
         client = ClientModel.find_by_email(email, identity_jwt)
         if not client:
-            return Response('Cliente não encontrado.', 404)
+            return Response(
+                response=json.dumps({
+                    "message": "Cliente não encontrado."
+                }),
+                status=404,
+                mimetype='application/json'
+            )
 
         client.delete()
-        return Response('Cliente deletado.', 200)
+        return Response(
+            response=json.dumps({
+                "message": "Cliente deletado."
+            }),
+            status=200,
+            mimetype='application/json'
+        )
 
     @client_ns.doc("Atualizar cliente", security="Bearer")
     @client_ns.expect(user_schema, validate=True)
@@ -100,32 +150,62 @@ class User(Resource):
         """Possibilita atualizar os dados de um cliente."""
 
         identity_jwt = get_jwt_identity()
-        
+
         client = ClientModel.find_by_email(email, identity_jwt)
         if not client:
-            return Response('Cliente não encontrado.', 404)
-        
+            return Response(
+                response=json.dumps({
+                    "message": "Cliente não encontrado."
+                }),
+                status=404,
+                mimetype='application/json'
+            )            
+
         name = client_ns.payload.get('name')
         email = client_ns.payload.get('email')
         password = client_ns.payload.get('password')
         phone = client_ns.payload.get('phone')
 
         if not name or not email or not password:
-            return Response('Campos incorretos', 400)
+            return Response(
+                response=json.dumps({
+                    "message": "Cliente incorretos."
+                }),
+                status=400,
+                mimetype='application/json'
+            )
 
         # Check fields
         if len(name) < 3:
-            return Response('Nome ínvalido.', 400)
+            return Response(
+                response=json.dumps({
+                    "message": "Nome ínvalido."
+                }),
+                status=400,
+                mimetype='application/json'
+            )
         if "@" not in email or len(email) < 3:
-            return Response('Email ínvalido', 400)
+            return Response(
+                response=json.dumps({
+                    "message": "Email ínvalido."
+                }),
+                status=400,
+                mimetype='application/json'
+            )
+
         if len(password) < 3:
-            return Response('Senha ínvalida.', 400)
-        
+            return Response(
+                response=json.dumps({
+                    "message": "Senha ínvalida."
+                }),
+                status=400,
+                mimetype='application/json'
+            )
+
         client.name = name
         client.email = email
         client.password = password
         client.phone = phone
-        
+        client.save()
+
         return client.as_dict(), 200
-
-
