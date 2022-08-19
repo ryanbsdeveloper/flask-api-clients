@@ -9,23 +9,23 @@ from models.db import db
 SETTINGS_FILE = "./settings.py"
 
 def create_app():
-    app = Flask(__name__)
-    app.config.from_pyfile(SETTINGS_FILE)
+    application = Flask(__name__)
+    application.config.from_pyfile(SETTINGS_FILE)
 
-    @app.before_first_request
+    @application.before_first_request
     def create_db():
         db.create_all()
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///models/data.db'
-    app.config['JWT_SECRET_KEY'] = 'jwt-secret-key-ryanbs'
-    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
-    app.config.SWAGGER_UI_DOC_EXPANSION = 'list'
-    app.config.SWAGGER_UI_OPERATION_ID = True
-    app.config.SWAGGER_UI_REQUEST_DURATION = True
-    app.secret_key = os.getenv('SECRET_KEY')
-    db.init_app(app)
-    api.init_app(app)
-    jwt = JWTManager(app)
+    application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///models/data.db'
+    application.config['JWT_SECRET_KEY'] = 'jwt-secret-key-ryanbs'
+    application.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
+    application.config.SWAGGER_UI_DOC_EXPANSION = 'list'
+    application.config.SWAGGER_UI_OPERATION_ID = True
+    application.config.SWAGGER_UI_REQUEST_DURATION = True
+    application.secret_key = os.getenv('SECRET_KEY')
+    db.init_app(application)
+    api.init_app(application)
+    jwt = JWTManager(application)
 
     @jwt.expired_token_loader
     def my_expired_token_callback(expired_token):
@@ -55,9 +55,9 @@ def create_app():
             status=401,
             mimetype='application/json'
         )
-    return app
+    return application
 
 
 if __name__ == "__main__":
-    app = create_app()
-    app.run()
+    application = create_app()
+    application.run(host='0.0.0.0', port=5000)
