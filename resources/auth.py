@@ -5,7 +5,7 @@ from flask_restx import Resource, Namespace, fields
 from flask_jwt_extended import (
     create_refresh_token,
     create_access_token, 
-    decode_token, jwt_required)
+    jwt_required)
 from werkzeug.security import safe_str_cmp
 from models.auth import AuthModel
 from schemas.schemas import auth_ns, auth_schema, token_schema
@@ -13,6 +13,7 @@ from schemas.schemas import auth_ns, auth_schema, token_schema
 
 @auth_ns.route("/user/register")
 class AuthRegister(Resource):
+    @auth_ns.doc("Criar sua autenticação JWT")
     @auth_ns.expect(auth_schema)
     @auth_ns.response(201, description='Autenticação JWT criada.', model=auth_schema)
     def post(self):
@@ -62,6 +63,7 @@ class AuthDelete(Resource):
 
 @auth_ns.route("/user/login")
 class AuthLogin(Resource):
+    @auth_ns.doc("Consulte sua autenticação JWT")
     @auth_ns.expect(auth_schema)
     @auth_ns.response(201, description='Token de acesso para endpoints protegidos.', model=token_schema)
     def post(self):

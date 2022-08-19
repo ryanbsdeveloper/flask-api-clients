@@ -15,8 +15,11 @@ def create_app():
     def create_db():
         db.create_all()
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///models/data.db'
     app.config['JWT_SECRET_KEY'] = 'jwt-secret-key-ryanbs'
+    app.config.SWAGGER_UI_DOC_EXPANSION = 'list'
+    app.config.SWAGGER_UI_OPERATION_ID = True
+    app.config.SWAGGER_UI_REQUEST_DURATION = True
     app.secret_key = os.getenv('SECRET_KEY')
     db.init_app(app)
     api.init_app(app)

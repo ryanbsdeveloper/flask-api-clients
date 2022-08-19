@@ -15,7 +15,7 @@ authorizations = {
 api = Api(
     title="API de gerenciamento de clientes. ",
     version="0.0.1",
-    description="API for manangent client",
+    description="API para gerenciar dados de clientes para sua aplicação.",
     authorizations=authorizations
 )
 api.add_namespace(auth_ns, '/auth')

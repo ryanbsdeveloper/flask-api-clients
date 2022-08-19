@@ -57,6 +57,7 @@ class Users(Resource):
         client.save()
         return client.as_dict(), 201
 
+    
 
 @client_ns.route("/<string:email>")
 @client_ns.response(404, 'Cliente não encontrado.')

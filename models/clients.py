@@ -3,6 +3,7 @@ from .db import db
 
 class ClientModel(db.Model):
     __tablename__ = "clients"
+    
     id = db.Column(db.Integer, primary_key=True)
     jwt_identity = db.Column(db.String(100), nullable=False)
     name = db.Column(db.String(255), nullable=False)
