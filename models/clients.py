@@ -1,4 +1,4 @@
-from models import db
+from db import db
 
 
 class ClientModel(db.Model):
@@ -10,13 +10,14 @@ class ClientModel(db.Model):
     password = db.Column(db.String(255), nullable=False)
     phone = db.Column(db.String(255), nullable=True)
 
+
     def as_dict(self):
         return dict(
-            id=self.id,
             name=self.name,
             email=self.email,
             password=self.password,
-            phone=self.phone
+            phone=self.phone,
+
         )
 
     @classmethod
@@ -24,8 +25,8 @@ class ClientModel(db.Model):
         return cls.query.filter_by(id=id).first()
 
     @classmethod
-    def find_by_email(cls, email):
-        return cls.query.filter_by(email=email).first()
+    def find_by_email(cls, email, jwt):
+        return cls.query.filter_by(email=email, jwt_identity=jwt).first()
 
     @classmethod
     def get_all_jwt_identity(cls, identity):

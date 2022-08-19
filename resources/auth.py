@@ -8,19 +8,7 @@ from flask_jwt_extended import (
     decode_token, jwt_required)
 from werkzeug.security import safe_str_cmp
 from models.auth import AuthModel
-
-
-auth_ns = Namespace(
-    'auth', description='Criar autenticação JWT', ordered=True)
-
-auth_schema = auth_ns.model('Create Auth', dict(
-    username=fields.String(required=True, description='username'),
-    password=fields.String(required=True, description='password')
-))
-
-token_schema = auth_ns.model('Token', dict(
-    access_token=fields.String(description="Token de acesso para endpoints protegidos."),
-))
+from schemas.schemas import auth_ns, auth_schema, token_schema
 
 
 @auth_ns.route("/user/register")

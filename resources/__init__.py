@@ -13,7 +13,7 @@ authorizations = {
 }
 
 api = Api(
-    title="Client API",
+    title="API de gerenciamento de clientes. ",
     version="0.0.1",
     description="API for manangent client",
     authorizations=authorizations
