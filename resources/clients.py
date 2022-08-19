@@ -6,7 +6,7 @@ from flask_restx import Resource
 from models.clients import ClientModel
 from schemas.schemas import client_ns, user_schema
 
-@client_ns.route("/")
+@client_ns.route("/clients")
 class Users(Resource):
     @client_ns.doc("Listar clientes", security="Bearer")
     @client_ns.response(code=200, description='', model=user_schema)
@@ -17,6 +17,8 @@ class Users(Resource):
         identity_jwt = get_jwt_identity()
         return dict(clients=[user.as_dict() for user in ClientModel.get_all_jwt_identity(identity_jwt)])
 
+@client_ns.route("/client")
+class Users(Resource):
     @client_ns.doc("Criar clientes", security="Bearer")
     @client_ns.expect(user_schema, validate=True)
     @client_ns.response(code=201, model=user_schema, description='')
@@ -58,8 +60,7 @@ class Users(Resource):
         return client.as_dict(), 201
 
     
-
-@client_ns.route("/<string:email>")
+@client_ns.route("/client/<string:email>")
 @client_ns.response(404, 'Cliente não encontrado.')
 class User(Resource):
     @client_ns.doc("Pegar cliente", security="Bearer")
