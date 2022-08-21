@@ -1,3 +1,8 @@
+"""
+ copyrigth © ryanbsdeveloper
+ 2022 - brazil
+"""
+
 from flask_restx import Api
 
 from .auth import auth_ns

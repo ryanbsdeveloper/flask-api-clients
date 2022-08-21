@@ -1,5 +1,9 @@
-from flask_restx import Namespace, fields
+"""
+ copyrigth © ryanbsdeveloper
+ 2022 - brazil
+"""
 
+from flask_restx import Namespace, fields
 
 # resources/clients.py
 client_ns = Namespace(

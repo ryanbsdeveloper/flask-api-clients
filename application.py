@@ -1,3 +1,8 @@
+"""
+ copyrigth © ryanbsdeveloper
+ 2022 - brazil
+"""
+
 import os
 from werkzeug.routing import *
 from werkzeug.security import *

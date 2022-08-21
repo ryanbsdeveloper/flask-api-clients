@@ -1,3 +1,8 @@
+"""
+ copyrigth © ryanbsdeveloper
+ 2022 - brazil
+"""
+
 from flask import Response, json
 from flask_restx import Resource, Namespace, fields
 from flask_jwt_extended import (
