@@ -6,9 +6,9 @@
 
 #### Detalhes
 
-API desenvolvida com flask com autenticação JWT e documentada com Swagger
+API desenvolvida com flask com autenticação JWT e documentada com Swagger.
 
-Acesse: [API]()
+Acesse: [API](http://api-clientes.us-east-1.elasticbeanstalk.com/)
 
 
 
@@ -24,4 +24,5 @@ Acesse: [API]()
 
 - **AWS** (Elastic Beanstalk)
 
+# 
   
