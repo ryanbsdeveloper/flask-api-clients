@@ -11,9 +11,8 @@ from datetime import timedelta
 from flask import Flask, Response, json
 from flask_jwt_extended import JWTManager
 
-from resources.config import api
 from models.db import db
-
+from resources.config import api
 
 SETTINGS_FILE = "./settings.py"
 
