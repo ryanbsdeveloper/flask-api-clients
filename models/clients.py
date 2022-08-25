@@ -2,7 +2,6 @@
  copyrigth © ryanbsdeveloper
  2022 - brazil
 """
-
 from .db import db
 
 

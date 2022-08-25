@@ -1,4 +1,14 @@
 DEBUG = False
-SQLALCHEMY_TRACK_MODIFICATIONS = False
 PROPAGATE_EXCEPTIONS = True
+
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+SQLALCHEMY_DATABASE_URI = 'sqlite:///models/data.db'
+
+from datetime import timedelta
+JWT_SECRET_KEY = 'jwt-secret-key-ryanbs'
+JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=1)
 SECRET_KEY = True
+
+SWAGGER_UI_REQUEST_DURATION = True
+SWAGGER_UI_OPERATION_ID = True
+SWAGGER_UI_DOC_EXPANSION = 'list'

@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Aug 24 19:30:24 2022
+# Make data base, printed on Thu Aug 25 11:35:14 2022
 
 # Variables
 
@@ -21,11 +21,13 @@ GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
 SSH_AGENT_LAUNCHER = gnome-keyring
 # environment
+GJS_DEBUG_OUTPUT = stderr
+# environment
 LC_NAME = pt_BR.UTF-8
 # environment
 LC_NUMERIC = pt_BR.UTF-8
 # environment
-VSCODE_CWD = /home/ryanl/Desktop/my-datas/ryan-estudos/myProjects-git/flask-api-restx
+VSCODE_CWD = /home/ryanl
 # environment
 LC_ADDRESS = pt_BR.UTF-8
 # default
@@ -53,17 +55,13 @@ VSCODE_CODE_CACHE_PATH = /home/ryanl/.config/Code/CachedData/da76f93349a72022ca4
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.9E76Q1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.5JGCR1
 # default
 .LOADED := 
 # default
 .INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
-# environment
-GNOME_TERMINAL_SERVICE = :1.187
 # makefile
 MAKEFLAGS = pqrR
-# environment
-DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=3c4adec8fbee8f0f37f6931863068ef7
 # makefile
 CURDIR := /home/ryanl/Desktop/my-datas/ryan-estudos/myProjects-git/flask-api-restx
 # environment
@@ -91,19 +89,19 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 48379
+VSCODE_PID = 9290
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/seven:@/tmp/.ICE-unix/43619,unix/seven:/tmp/.ICE-unix/43619
+SESSION_MANAGER = local/seven:@/tmp/.ICE-unix/1219,unix/seven:/tmp/.ICE-unix/1219
 # automatic
 *F = $(notdir $*)
 # environment
 CHROME_DESKTOP = code-url-handler.desktop
 # environment
-DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=3c4adec8fbee8f0f37f6931863068ef7
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # environment
@@ -119,9 +117,9 @@ MAKECMDGOALS := all
 # environment
 XMODIFIERS = @im=ibus
 # environment
-SHLVL = 1
+GJS_DEBUG_TOPICS = JS ERROR;JS LOG
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/6fbb5df1_d225_4d22_a279_bb1a593121e3
+SHLVL = 0
 # environment
 MAKELEVEL := 0
 # environment
@@ -141,6 +139,8 @@ LC_MONETARY = pt_BR.UTF-8
 # environment
 LC_TIME = pt_BR.UTF-8
 # environment
+INVOCATION_ID = 39516a24b5904ec7a96d57dab0fcb47d
+# environment
 USERNAME = ryanl
 # environment
 GNOME_SETUP_DISPLAY = :1
@@ -153,7 +153,7 @@ LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
 XDG_CURRENT_DESKTOP = Unity
 # environment
-LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+LS_COLORS = 
 # automatic
 +F = $(notdir $+)
 # environment
@@ -164,10 +164,12 @@ ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 GNUMAKEFLAGS := 
 # environment
 LOGNAME = ryanl
+# environment
+GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
 # makefile
 .DEFAULT_GOAL := test
 # environment
-SYSTEMD_EXEC_PID = 43619
+SYSTEMD_EXEC_PID = 1244
 # environment
 DISPLAY = :0
 # environment
@@ -177,19 +179,21 @@ GTK_MODULES = gail:atk-bridge
 # default
 MAKE_VERSION := 4.3
 # environment
-DBUS_STARTER_BUS_TYPE = session
+MANAGERPID = 1053
 # environment
 LC_MEASUREMENT = pt_BR.UTF-8
 # environment
-_ = /usr/bin/code
+GIO_LAUNCHED_DESKTOP_FILE_PID = 9290
+# environment
+_ = /usr/share/code/code
 # environment
 LC_PAPER = pt_BR.UTF-8
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
-COLORTERM = truecolor
-# environment
 LC_CTYPE = pt_BR.UTF-8
+# environment
+JOURNAL_STREAM = 8:20247
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -203,8 +207,6 @@ ELECTRON_RUN_AS_NODE = 1
 # environment
 VSCODE_IPC_HOOK = /run/user/1000/vscode-3c866168-1.70.0-main.sock
 # environment
-TERM = xterm-256color
-# environment
 IM_CONFIG_PHASE = 1
 # environment
 PAPERSIZE = a4
@@ -214,12 +216,6 @@ PAPERSIZE = a4
 <F = $(notdir $<)
 # default
 SUFFIXES := 
-# environment
-VSCODE_CLI = 1
-# environment
-ELECTRON_NO_ATTACH_CONSOLE = 1
-# environment
-VTE_VERSION = 6800
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
 # environment
@@ -229,7 +225,7 @@ GDMSESSION = ubuntu
 # environment
 LC_IDENTIFICATION = pt_BR.UTF-8
 # variable set hash-table stats:
-# Load=108/1024=11%, Rehash=0, Collisions=12/138=9%
+# Load=106/1024=10%, Rehash=0, Collisions=4/136=3%
 
 # Pattern-specific Variable Values
 
@@ -250,7 +246,7 @@ LC_IDENTIFICATION = pt_BR.UTF-8
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-24 19:29:44.578206341
+#  Last modified 2022-08-24 19:37:47.38067202
 #  File has been updated.
 #  Successfully updated.
 
@@ -272,7 +268,7 @@ test:
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 2):
-	pytest /test
+	pytest ./tests --cov=resources --cov=models --cov=schemas
 
 # files hash-table stats:
 # Load=5/1024=0%, Rehash=0, Collisions=0/15=0%
@@ -282,13 +278,12 @@ test:
 
 # No general ('VPATH' variable) search path.
 
- 
-# strcache buffers: 1 (0) / strings = 24 / storage = 226 B / avg = 9 B
-# current buf: size = 8162 B / used = 226 B / count = 24 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 25 / storage = 232 B / avg = 9 B
+# current buf: size = 8162 B / used = 232 B / count = 25 / avg = 9 B
 
-# strcache performance: lookups = 30 / hit rate = 20%
+# strcache performance: lookups = 30 / hit rate = 16%
 # hash-table stats:
-# Load=24/8192=0%, Rehash=0, Collisions=0/30=0%
-# Finished Make data base on Wed Aug 24 19:30:24 2022
+# Load=25/8192=0%, Rehash=0, Collisions=0/30=0%
+# Finished Make data base on Thu Aug 25 11:35:14 2022
 
  

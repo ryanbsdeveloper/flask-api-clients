@@ -1,5 +1,5 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/ryanl/Desktop/my-datas/ryan-estudos/myProjects-git/flask-api-restx'
-pytest /test
+pytest ./tests --cov=resources --cov=models --cov=schemas
 make: Leaving directory '/home/ryanl/Desktop/my-datas/ryan-estudos/myProjects-git/flask-api-restx'
  
