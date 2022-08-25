@@ -24,5 +24,5 @@ def test_verification_if_token_expired(app):
     THEN Cheque se a restrição de tempo do token está correta
     """
 
-    assert app.test_client().get("/clients", headers={"Authorization": token}).status_code == 200
+    assert app.test_client().get("/clients", headers={"Authorization": token}).status_code == 401
 
