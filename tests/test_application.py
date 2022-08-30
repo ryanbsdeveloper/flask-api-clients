@@ -1,3 +1,13 @@
+from .utils import (
+    add_client,
+    delete_client,
+    get_all_clients,
+    get_client,
+    put_client
+)
+from flask_jwt_extended import create_access_token, get_jwt_identity
+
+
 def test_name_aplication(app):
     """
     GIVE Aplicação
@@ -6,6 +16,7 @@ def test_name_aplication(app):
     """
 
     assert app.name == 'application'
+
 
 def test_request_return_200(client):
     """
@@ -16,6 +27,7 @@ def test_request_return_200(client):
 
     assert client.get("/").status_code == 200
 
+
 def test_request_not_found(client):
     """
     GIVE Situação cliente
@@ -25,3 +37,49 @@ def test_request_not_found(client):
 
     assert client.get("/test").status_code == 404
 
+
+def test_adding_client(app):
+    access_token = create_access_token('test-jwt')
+    response = add_client(app.test_client(), access_token, json={
+        "jwt_identity": get_jwt_identity(),
+        "name": "Teste",
+        "email": "teste@teste.com",
+        "password": "t1e2s3t4e",
+        "phone": "(11) 912345678"
+    })
+    assert response.status_code == 201
+    assert response.content_type == 'application/json'
+
+
+def test_update_client(app):
+    access_token = create_access_token('test-jwt')
+    response = put_client(app.test_client(), access_token, json={
+        "jwt_identity": get_jwt_identity(),
+        "name": "Teste",
+        "email": "teste@teste.com.br",
+        "password": "t1e2s3t4e",
+        "phone": "(11) 912345678"
+    })
+    assert response.status_code == 200
+    assert response.content_type == 'application/json'
+
+
+def test_get_all_clients(app):
+    access_token = create_access_token('test-jwt')
+    response = get_all_clients(app.test_client(), access_token)
+    assert response.status_code == 200
+    assert response.content_type == 'application/json'
+
+
+def test_get_client(app):
+    access_token = create_access_token('test-jwt')
+    response = get_client(app.test_client(), access_token)
+    assert response.status_code == 200
+    assert response.content_type == 'application/json'
+
+
+def test_delete_client(app):
+    access_token = create_access_token('test-jwt')
+    response = delete_client(app.test_client(), access_token)
+    assert response.status_code == 200
+    assert response.content_type == 'application/json'

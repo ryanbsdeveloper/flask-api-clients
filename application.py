@@ -7,7 +7,7 @@ from werkzeug.routing import *
 from werkzeug.security import *
 
 from flask import Flask, Response, json
-from flask_jwt_extended import JWTManager
+from flask_jwt_extended import JWTManager 
 
 from models.db import db
 from resources.config import api
@@ -56,4 +56,5 @@ def my_unauthorized_loader_token_callback(invalid_token):
 
 
 if __name__ == "__main__":
-    application.run(host='0.0.0.0', port=8000, debug=True)
+
+    application.run(host='0.0.0.0', port=8000)
