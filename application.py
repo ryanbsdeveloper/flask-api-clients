@@ -56,5 +56,4 @@ def my_unauthorized_loader_token_callback(invalid_token):
 
 
 if __name__ == "__main__":
-
     application.run(host='0.0.0.0', port=8000)

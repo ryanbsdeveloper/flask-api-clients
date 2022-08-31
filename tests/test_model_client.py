@@ -1,8 +1,6 @@
 def test_model_new_client(db_client):
     """
-    GIVE modelo ClientModel
-    WHEN Cria um novo cliente
-    THEN Cheque os atributos mostre se foram executados corretamente
+    Cria um novo cliente
     """
 
     assert db_client.jwt_identity == 'test'

@@ -9,9 +9,7 @@ token_expired = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjE0NDA
 
 def test_verification_authorization_jwt(app):
     """
-    GIVE Situação cliente
-    WHEN Tentar GET e POST nas "/clients" e "/client"
-    THEN Cheque se essa rota está necessitando de autenticação
+    Tentar GET e POST em "/clients" e "/client". Cheque se essa rota está necessitando de autenticação
     """
 
     assert app.test_client().get("/clients").status_code == 401
@@ -19,9 +17,7 @@ def test_verification_authorization_jwt(app):
 
 def test_verification_if_token_expired(app):
     """
-    GIVE Situação cliente
-    WHEN Expiração do token
-    THEN Cheque se a restrição de tempo do token está correta
+    Expiração do token. Cheque se a restrição de tempo do token está correta
     """
 
     assert app.test_client().get("/clients", headers={"Authorization": token_expired}).status_code == 401
