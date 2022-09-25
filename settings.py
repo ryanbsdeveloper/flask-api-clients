@@ -6,8 +6,10 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:///models/data.db'
 
 from datetime import timedelta
 JWT_SECRET_KEY = 'jwt-secret-key-ryanbs'
-JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=1)
+JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=30)
+JWT_COOKIE_SECURE = True
 SECRET_KEY = True
+
 
 SWAGGER_UI_REQUEST_DURATION = True
 SWAGGER_UI_OPERATION_ID = True
